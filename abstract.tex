@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 80 CHAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+% Recent advances in augmented reality (AR) technology are attracting 
+% various emerging industrial and everyday life applications.
+% %
+% However, resource limitations of untethered HMDs, in particular, the energy 
+% constraint of battery-powered devices, can limit the scope of potential applications.
+% %
+% Hence, a common approach is to lower the visual quality, which however
+% trades-off user perceived experience for energy efficiency.
+% %
+% A key requirement for such applications, then, is to enhance the 
+% energy efficiency %of untethered HMD devices
+% while minimizing the sacrifice in user experience.
+%
+%
+% In this work, we present {\myit}, an OpenGL API compatible 
+%
+We present {\myit}, an OpenGL API compatible \emph{Low-power Graphics Library}
+for energy efficient AR headset applications.
+%
+%Prior to presenting the design of {\myit}, 
+We first characterize power consumption patterns of a state of the art 
+AR headset, Magic Leap One, and empirically show that its internal GPU is 
+the most impactful controllable energy factor.
+%
+Based on preliminary studies, we design {\myit} so that it uses the 
+device's gaze/head orientation information
+and geometry data to infer user perception information, 
+intercepts application-level graphics API calls, 
+and uses frame rate control, mesh simplification, and culling techniques
+to enhance energy efficiency of AR headsets without detriment of user experience.
+%
+%
+% We evaluate {\myit} using a prototype implementation on Microsoft HoloLens.
+%
+Results from a comprehensive set of controlled in-lab experiments and an 
+IRB-approved user study with 25 participants
+%
+%show that {\myit} can reduce the HoloLens' energy usage by $\sim$25\% 
+show that {\myit} reduces up to $\sim$22\% of total power while adding only 46$\mu$sec of latency per object with close to no loss in subjective user 
+experience.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 80 CHAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{comment}
+
+
+We present {\myit}, an OpenGL API compatible Low-power Graphics Library
+for energy efficient AR headset applications.
+%
+%Prior to presenting the design of {\myit}, 
+We first characterize power consumption patterns of a state of the art 
+AR headset, Magic Leap One, and empirically show that its internal GPU is 
+the most impactful controllable energy factor.
+%
+Based on preliminary studies, we design {\myit} so that it uses the 
+device's gaze/head orientation %information
+and geometry data to infer user perception information, 
+intercepts application-level graphics API calls, 
+and uses frame rate control, mesh simplification, and culling techniques
+to enhance energy efficiency of AR headsets without detriment of user experience.
+%
+%
+% We evaluate {\myit} using a prototype implementation on Microsoft HoloLens.
+%
+Results from a comprehensive set of controlled in-lab experiments and a user study with 25 participants
+%
+%show that {\myit} can reduce the HoloLens' energy usage by $\sim$25\% 
+show that {\myit} reduces up to $\sim$22\% of total power (0.8~hr increase from 2.7~hr lifetime) while adding only 46$\mu$sec of latency per object with no loss in subjective user 
+experience.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 80 CHAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{comment}

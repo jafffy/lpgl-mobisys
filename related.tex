@@ -1,0 +1,82 @@
+\section{Related Work}
+\label{sec:related}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 80 CHAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Recent studies proposed techniques that exploit human perception information  
+%(e.g., gaze/head orientation or scene dynamics) to reduce computation or energy usage
+%for mobile platforms while minimizing the sacrifice in user experience~\cite{Guenter:2012:FG,Hwang:2017:RPO,He:2015:OSP}. 
+%We leverage similar techniques in this work.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 80 CHAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A number of prior work %among which we can list only a subset here,
+exploit human perception information to reduce computation or 
+energy consumption while minimizing sacrifice in user experience on mobile headsets.
+%
+Guenter et al.~\cite{Guenter:2012:FG} presented a way to 
+improve performance by using eye tracking information to render backgrounds 
+with low resolution and focused-content with high resolution.
+%
+Patney et al. at NVIDIA has also announced an improved foveated rendering 
+technique for VR displays which optimizes performance by reducing image 
+quality in the viewer's peripheral vision based on gaze tracking~\cite{foveated_rendering}.
+%
+Hwang et al. proposed a PSNR-based method to reduce energy consumption using
+frame rate scaling by comparing the contents of two consecutive frames in
+mobile games~\cite{Hwang:2017:RPO}.
+%
+Tan et al. proposed FocusVR~\cite{focusVR}, which performs screen dimming and vignetting to reduce VR headset power consumption.
+%
+While sharing similar goals with {\myit}, these works focus on the VR environment, where background rendering plays a significant role in power usage reduction. Our work is tailored towards mobile AR headsets; thus, addresses different challenges such as those discussed in Section~\ref{sec:background}.
+
+%\todo{Our work, however, uses a gyroscope sensor instead of eye tracker 
+%(which many not be available on most commercial AR HMDs) and use geometry based 
+%dynamics measurements instead of image-based comparisons to reduce the 
+%computation latency.}
+
+
+{\myit} resides between the application and the graphics library, providing a
+transparent compatible layer that can intercept OpenGL commands.
+This is similar to the approach taken by Miao et al. 
+in~\cite{Miao:2016:TYG:2873587.2873603}.
+However, their focus was to adapt the graphics stack to the circular 
+displays of wearable smart watches and reduce the memory and display interface
+traffic wasted due to non-rectangular displays, while our approach focuses on
+energy efficiency.
+
+In an attempt to reduce energy usage of the display on a mobile device without
+deteriorating user perception,
+%
+LPD~\cite{191579} reduces the memory and display interface traffic by 
+utilizing the display update information to 
+% eliminate expensive memory copies of unchanged parts.
+suppressing the update of unchanged parts.
+% However, this approach is not applicable to a general graphics pipeline 
+% because the GPU architecture requires all scene to be redrawn for each frame.
+%
+He et al. \cite{He:2015:OSP} makes an observation that 
+% human visually-perceivable ability highly depends on the user-screen distance, and 
+a reduced display resolution may still achieve the same user experience
+when the user-screen distance is large. Based on this idea, 
+% authors present a flexible dynamic resolution scaling system for smartphones. 
+authors adopt an ultrasonic-based approach to accurately detect the user-screen
+distance and make dynamic scaling decisions for maximum user experience and 
+power saving.
+%
+Anand et al.~\cite{Anand:2011} utilize the pixel brightness to 
+save significant amounts of power while preserving image qualities, and
+%
+FingerShadow~\cite{187123} performs local dimming for the screen areas covered
+by users' fingers to save power without compromising their visual experiences.
+%
+% and Ma et al. \cite{6200246} characterized the power consumption of mobile games.
+%
+However, these work are in the context of mobile devices and do not take into
+account the characteristics of untethered AR headsets.
+%
+% As discussed in Section~\ref{sec:preliminary}, the screen resolution may not be 
+% adjustable, and the brightness and object coverage may not be the main consumers
+% of energy on HMDs such as the Microsoft HoloLens.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 80 CHAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

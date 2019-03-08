@@ -1,0 +1,209 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The new ACM style from 2017!
+% - http://sensys.acm.org/2017/resources/documents/HowTo.pdf
+% - http://www.acm.org/publications/proceedings-template
+% - http://www.acm.org/binaries/content/assets/publications/consolidated-tex-template/acmart.pdf
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[10pt,sigconf,letterpaper,anonymous]{acmart}
+%\documentclass[10pt,sigconf,letterpaper]{acmart}% new ACM style 2017 + anonymous
+
+
+% BELOW 3 LINES FOR REVIEW VERSION ONLY (REMOVE FOR CAMERA READY)
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference info
+\pagestyle{plain} % removes running headers
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{subfigure}                  % For subfigure
+\usepackage{multirow}                   % For multirow table
+\usepackage{enumitem}                   % For [leftmargin=*] option in itemize
+\usepackage{balance}                    % For balanced columns on the last page
+
+\newcommand{\jw}[1]{{\textcolor{green!55!blue}{\it JW: #1}}}
+\newcommand{\jp}[1]{{\textcolor{orange}{\textit{JP: #1}}}}
+\newcommand{\jk}[1]{{\textcolor{blue}{\textit{JK: #1}}}}
+\newcommand{\wj}[1]{{\textcolor{magenta}{\textit{WJ: #1}}}}
+\newcommand{\raj}[1]{{\textcolor{cyan}{\textit{RB: #1}}}}
+\newcommand{\todo}[1]{{\textcolor{red}{\textbf{TODO: #1}}}}
+\newcommand{\rev}[1]{{\textcolor{black}{#1}}}
+
+\newcommand\spar[1]{\vspace{1ex}\noindent{\bf #1}}
+
+\newcommand{\tworow}[1]{\multirow{2}{*}{#1}}
+\newcommand{\twocol}[1]{\multicolumn{2}{|c|}{#1}}
+
+\newcommand{\system}{{LoGR}}                     % old style
+\newcommand{\sysit}{\textit{\system}}
+\newcommand{\myname}{LoGR}                     % old style
+\newcommand{\myit}{\textit{\myname}}
+
+\newcommand{\mlo}{{Magic Leap One}}
+
+\newcommand{\fig}{Figure~}
+\newcommand{\figs}{Figures~}
+\graphicspath{{./figure/}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% formatting hack, iff needed ... only at the last moment
+%\setlength{\textfloatsep}{12pt}        % space between figure and text
+%\setlength{\floatsep}{9pt}             % space between figure and figure
+%\setlength{\subfigbottomskip}{3pt}     % space at bottom of subfigure
+%\setlength{\subfigtopskip}{2pt}        % space at top of subfigure
+%\setlength{\subfigcapskip}{-1pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\copyrightyear{2018}
+
+
+% Copyright
+%\setcopyright{acmcopyright}     % if you give the rights to ACM ==> DEFAULT
+\setcopyright{none}             % none
+%\acmDOI{...}                    % DOI - Insert your DOI below...
+%\acmISBN{...}                   % ISBN - Insert your conference/workshop's ISBN below...
+%\acmYear{2018}                  % Insert Publication year
+%\copyrightyear{2018}            % Insert Copyright year (typically the same as above)
+%\acmPrice{15.00}
+%\acmConference[Short Name]{Long Name}{dates}{venue}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%\title[short title]{long long title}
+\title[LoGR]
+    %{\huge LpGL: Low-power Graphics Library using Sensor-based User Perception
+    %    for Untethered AR Head Mounted Displays}
+    {\huge {\myit}: Low-power Graphics Library \textit{for} Mobile AR Headsets}
+    %{\huge C'Mon! You Can't See That Anyway - \\A Low-power Graphics Library \textit{for} Mobile AR Headsets}
+    %{\huge SaveME: Saving Energy Usage on Mobile AR Headsets}
+
+%\titlenote{titlenote stuff}
+%\subtitle{subtitle stuff}
+%\subtitlenote{subtitle note stuff}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author{Jaewon Choi}
+    %\authornote{you can put authornote stuff here}
+    %\orcid{1234-5678-9012}
+    \affiliation{%
+     \institution{Ajou Univerisity}
+%     \department{Department of Computer Engineering}  
+      %\country{Republic of Korea} 
+    }
+\email{jainersoer@ajou.ac.kr}
+
+\author{HyeonJung Park}
+    \affiliation{%
+     \institution{Ajou University}
+%     \department{Department of Computer Engineering}
+      %\country{Republic of Korea} 
+    }
+\email{jhikm1003@ajou.ac.kr}
+
+\author{Jeongyeup Paek}
+    %\authornote{this guy has a son and a daughter}
+    \affiliation{%
+     \institution{Chung-Ang University}
+%     \department{School of Computer Science and Engineering}
+      %\country{Republic of Korea} 
+    }
+\email{jpaek@cau.ac.kr}
+
+\author{Rajesh Krishna Balan}
+    %\authornote{this guy has a son and a daughter}
+    \affiliation{%
+     \institution{Singapore Management University}
+%     \department{School of Information Systems}
+      %\country{Republic of Korea} 
+    }
+\email{rajesh@smu.edu.sg}
+
+\author{JeongGil Ko}
+    \affiliation{%
+     \institution{Ajou Univerisity}
+%     \department{Department of Computer Engineering}
+      %\country{Republic of Korea} 
+    }
+\email{jgko@ajou.ac.kr}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The default list of authors is too long for headers
+\renewcommand{\shortauthors}{Jaewon Choi et al.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Abstract must precede \maketitle
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+%
+% The code below should be generated by the tool at
+% http://dl.acm.org/ccs.cfm
+% Please copy and paste the code instead of the example below. 
+%
+% \begin{CCSXML}
+% <ccs2012>
+%     <concept>
+%         <concept_id>10003033.10003106.10003112.10003238</concept_id>
+%         <concept_desc>Networks~Sensor networks</concept_desc>
+%         <concept_significance>500</concept_significance>
+%     </concept>
+%     <concept>
+%         <concept_id>10010405.10010444.10010447</concept_id>
+%         <concept_desc>Applied computing~Health care information systems</concept_desc>
+%         <concept_significance>500</concept_significance>
+%     </concept>
+%     % <concept>
+%     %     <concept_id>10002951.10003227.10003241.10003244</concept_id>
+%     %     <concept_desc>Information systems~Data analytics</concept_desc>
+%     %     <concept_significance>300</concept_significance>
+%     % </concept>
+% </ccs2012>
+% \end{CCSXML}
+
+% \ccsdesc[500]{Networks~Sensor networks}
+% \ccsdesc[500]{Applied computing~Health care information systems}
+% \ccsdesc[300]{Information systems~Data analytics}
+
+
+% We no longer use \terms command
+%\keywords{Augmented Reality, Energy Efficiency, Head Mounted Display, OpenGL
+%}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{intro}
+\input{preliminary}
+\input{system}
+\input{inlabexperiments}
+\input{userstudy}
+%\input{evaluation}
+\input{discussion}
+\input{related}
+\input{conclusion}
+
+%% ack stuff
+%\begin{acks}
+%\end{acks}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\balance
+\bibliographystyle{acmart/ACM-Reference-Format}
+\bibliography{sensors} 
+
+
+%{\vspace{5ex}\noindent\huge\textcolor{red}
+%{\texttt{"paper should not exceed 12 pages,\\ excluding references."}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

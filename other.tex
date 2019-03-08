@@ -1,0 +1,17 @@
+
+\spar{Graphics pipeline}:
+%
+Given a draw call, the GPU will execute the graphics pipeline depicted in Figure~\ref{fig:pipeline}. For ``vertex specification'', the GPU gathers and analyzes vertex information provided by the application. Next, the ``vertex shader'' focuses on the matrix transformations specified by  the API inputs. The result of this process, still in the form of vertices,  is triangulized and rasterized in the following steps.
+%
+Note that a 3D object is essentially a combination of triangles, and 
+\emph{the quantity of triangles determine the quality of an object}.
+Rasterization is the process of quantizing the triangles into pixels for the
+target display.
+%
+Finally, the pipeline reaches the ``fragment shader'' in which the object 
+colors are integrated on a per-pixel-basis.
+%
+From this, we can intuitively understand that the \emph{number of vertices} can
+have a heavy impact on the graphics pipeline performance. Furthermore, the 
+\emph{frame rate}, which determines how often the pipeline is executed repeatedly,
+can also be critical in managing the energy usage of this object rendering process. 

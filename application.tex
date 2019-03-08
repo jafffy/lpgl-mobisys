@@ -1,0 +1,80 @@
+\subsection{3D Block Stacking Application}
+\label{sec:app}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 80 CHAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\raj{merge this into the evaluation section for the user study}
+
+To evaluate the usability of {\myit} on a real application at the user level,
+we designed an AR application for implicitly measuring the stereoscopsis level 
+of children with strabismus using AR HMDs, and performed an Institutional Review
+Board (IRB)-approved pilot study with strabismus (i.e., crossed eye) patients in
+the ophthalmology department at a university hospital.
+%
+The purpose of our pilot study was to validate changes in user-perceived
+object rendering quality when applying {\myit} with different configurations.
+
+
+Traditionally, devices such as keratometers are used to measure the 
+stereoscopsis level. However, these devices are bulky and cannot effectively 
+gain the attention of children to focus during the measurements.
+%
+For this reason, the clinical staff asked for a more interactive and engaging 
+game to measure children's stereoscopsis levels, and we designed an AR-based 
+game where the children were asked to stack 3D blocks using Microsoft HoloLens%
+\footnote{We used DirectX as the underlying native graphics library}
+(c.f., \fig\ref{fig:hololens}).
+
+
+The block stacking game operates as follows.
+%
+When the application starts, a white cube palette is displayed.
+Once the user visually focuses on the cube, the user is asked to press a clicker
+device and move the object in the 3D space.
+%
+Using such movements, the user is asked to stack all cube blocks on the display.
+The performance of moving the objects becomes an indirect measure of the 
+stereoscopsis level. 
+%
+We designed this game and user study to confirm if {\myit} makes proper 
+transitions in frame rate or changes in object quality, while minimally 
+affecting the user perceived quality.
+%
+Furthermore, we also gathered statistics on the amount of energy 
+that can be saved by applying {\myit} to real-world applications%
+\footnote{A sample video of the application and its interaction with {\myit} is
+available, and we will provide the URL after the anonymous review process.
+%at \todo{http://}
+}.
+
+%\jk{Let's make a recording of the task and share on Youtube.}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% 이러한 실제 stereoscopsis의 측정에 앞서, 우리는 AR HMD의 사용성에 대해서 면밀히 검토할 필요가 있었다. 특히 우리의 실험 대상은 어린이 환자들이었고, 이러한 환자들이 새로운 환경인 HMD 환경을 쉽게 이용할 수 있는지는 큰 챌린지 중 하나였다. 구체적으로 살펴보면 첫번째로 조작의 편의성을 확인해야 했다. Microsoft HoloLens로 조작할 수 있는 주요 방법은 손가락을 통한 gesture 인식과 external 장비인 clicker 가 있다. gesture 인식의 경우 HoloLens에 부착되어 있는 depth sensor에 손이 보여야 하는 문제가 있고 클릭의 정밀도가 낮다는 단점이 있는 반면, clicker를 이용하면 click 이라는 액션이 명확하다는 장점이 있기 때문에 우리는 clicker를 사용하기로 했다. 두번째로 HMD라는 경험이 환자들에게 어떻게 느껴지는지 인 지점이 있었다. 알려져 있기로 HMD 경험이 눈의 고통을 주기도 하고, 어지러움을 야기할 수도 있고, 불편함을 주기도 했는데 실제로 어린이 환자에게 AR 응용을 적용됐을 때 어떤 경험을 주는지 확인해 보는 것은 추후 AR 응용을 개발하는데에 좋은 information이 될 수 있다.  마지막으로 어린이 환자를 위한 측정 방법과 설문의 난이도를 고려하는 것이 중요했다. block stacking이라는 간단한 동작이지만 이러한 동작이 어린이들, 특히 환아들에게 어려울 수 있고 이러한 과정에 대한 설문을 하는 과정도 쉬운 언어를 통해서 진행이 되어야 했다.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 80 CHAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\subsection{Application-level View Frustum Culling}
+
+% 이번 섹션에서는 draw call을 줄이기 위한 방법인 user level view frustum culling의 방법에 대해 구체적으로 설명한다. 이전 섹션에 말했 듯, culling은 visibility를 판단하는 작업이다. 그래픽스 파이프라인에서는 view frustum culling이라고 불리는 작업을 수행하는데, 이는 카메라 정보, 그 중에서도 종횡비 시야각, 그리고 최소 가시거리, 최대 가시거리 정보를 통해 frustum을 만들고, 렌더링하는 물체들이 frustum의 바깥으로 나가는지 그렇지 않은지를 판단하는 방법들이다. 이러한 방법을 통해 화면에 보이지 않는 triangles를 판단하고, 이후 pipeline 작업에서는 해당 triangles를 배제해서 성능 향상을 이룬다.
+
+% 하지만 그럼에도 불구하고 system level이 아닌 application level에서의 view frustum culling은 필요하다. 그 이유는 렌더링 되지 않는 draw call도 에너지 소모에 영향을 주기 때문이다. 그 이유는 view frustum culling이 일어나는 시점의 문제에 있다. draw call이 불리면 graphics pipeline은 모든 그려야 하는 vertices를 vertex shader를 통해서 병렬적으로 transformation한다. 이 이후 시점에서 view frustum culling이 일어난다. 즉, 실제로 그려지게 될지 모르는 상태에서 연산을 해야 한다는 것이다. 이로 인해 높은 the number of triangles를 가진 모델의 경우 자원을 크게 낭비하게 된다.
+
+% 우리는 다음과 같은 방법을 통해 user level에서 light-weight view frustum culling을 진행한다. gpu에서의 view frustum culling은 mesh의 모든 triangles에 대해서 진행되기 때문에 비용이 비싸다. 하지만 우리는 우리는 mesh의 triangles가 아닌 initialization 시에 만든 mesh의 bounding box를 이용한다. 이러한 bounding box는 모델의 전체를 bound하고 있기 때문에 만약 camera가 바라보고 있는 방향기준으로 시야각 바깥에 bounding box가 있다면 이 모델이 보일 가능성이 없다고 생각할 수 있다. 이러한 케이스에 대해서는 해당 모델에 대한 draw call을 호출하지 않음으로 인해서 에너지 소모를 줄일 수 있다.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 80 CHAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
+
+To explain the implementation details of the bounding box projection process, we take as example, once again, the Stanford Bunny. Say that there is a Stanford Bunny and we want to compute the three metrics (i.e., XXX, XXX, and XXX) discussed above. Given the vertices and topology information for the bunny rendering, we receive the transformation matrix from the application to apply the target transformation (e.g., scaling, rotation, translation) to the vertices. On the application's perspective, as a result of the transformation process, a vertex $V$ will be located at $(x,y,z)$ from the origin point $(0,0,0)$. Here we say that $V$ is transformed in to world-space. \jk{huh???}
+
+% 간단한 예로 화면에 stanford bunny가 그려져 있고, 우리가 위에서 정의한 세가지 방법들을 계산하기 위해 유저 입장에서 이 bunny가 어떻게 보이는지를 계산하고 싶다. 렌더링을 하기 위한 vertices와 topology information이 있을 때, 이에 원하는 transformation (e.g. scaling, rotation, translation)을 적용하기 위해 transformation matrix를 application 단으로부터 받아서 vertices에 곱해준다. 이렇게 transform된 vertices는 중 하나의 vertices v 는 application 입장에서 origin, 즉 (0, 0, 0)을 기준으로 (x, y, z)에 위치하게 된다. 이때의 v를 v is transformed into world space. 라고 표현한다. 이 상태에서는 user 의 
+
+\end{comment}
+
+
